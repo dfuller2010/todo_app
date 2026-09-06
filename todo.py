@@ -5,11 +5,6 @@ import json
 # Store the current list of tasks in memory for the session.
 tasks = []
 
-# Save the in-memory task list to disk so it can be restored later.
-def save_tasks():
-    with open("tasks.json", "w") as f:
-        json.dump(tasks, f, indent=4)
-
 # Load any previously saved tasks from the JSON file when the app starts.
 def load_tasks():
     global tasks
@@ -19,6 +14,11 @@ def load_tasks():
     except FileNotFoundError:
         tasks = []
 
+# Save the in-memory task list to disk so it can be restored later.
+def save_tasks():
+    with open("tasks.json", "w") as f:
+        json.dump(tasks, f, indent=4)
+        
 # Add a new task entered by the user to the task list.
 def add_task():
     task = input("Enter your task: ") 
